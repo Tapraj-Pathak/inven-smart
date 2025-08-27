@@ -29,7 +29,7 @@ export function Header({ onMenuClick, searchValue, onSearchChange }: HeaderProps
               <FiMenu className="h-5 w-5" />
             </Button>
             <h1 className="text-lg font-semibold bg-gradient-primary bg-clip-text text-transparent">
-              Inventory Pro
+              InvenSmart नेपाल
             </h1>
           </div>
           

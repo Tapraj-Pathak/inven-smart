@@ -23,9 +23,9 @@ export function ProductCard({ product, onUpdateQuantity, index }: ProductCardPro
   };
 
   const getStatusLabel = () => {
-    if (product.status === 'out-of-stock') return 'Out of Stock';
-    if (product.status === 'low-stock') return 'Low Stock';
-    return 'In Stock';
+    if (product.status === 'out-of-stock') return 'सकियो (Out of Stock)';
+    if (product.status === 'low-stock') return 'कम छ (Low Stock)';
+    return 'उपलब्ध (In Stock)';
   };
 
   return (
@@ -86,7 +86,7 @@ export function ProductCard({ product, onUpdateQuantity, index }: ProductCardPro
               {format(new Date(product.expiryDate), 'MMM dd, yyyy')}
             </span>
           </div>
-          <span className="font-semibold text-primary">${product.price}</span>
+          <span className="font-semibold text-primary">NPR {product.price.toLocaleString('en-NP')}</span>
         </div>
 
         {/* Min Stock Warning */}

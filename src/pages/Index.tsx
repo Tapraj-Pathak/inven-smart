@@ -140,7 +140,7 @@ const Index = () => {
               />
               <StatsCard
                 title="Total Value"
-                value={`$${stats.totalValue.toFixed(2)}`}
+                value={`NPR ${stats.totalValue.toLocaleString('en-NP')}`}
                 icon={<FiDollarSign className="h-5 w-5" />}
                 color="success"
                 index={3}

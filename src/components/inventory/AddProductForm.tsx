@@ -70,7 +70,7 @@ export function AddProductForm({ open, onClose, onAdd }: AddProductFormProps) {
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Add New Product</DialogTitle>
+          <DialogTitle>नयाँ सामान थप्नुहोस् (Add New Product)</DialogTitle>
         </DialogHeader>
         
         <motion.form
@@ -106,7 +106,7 @@ export function AddProductForm({ open, onClose, onAdd }: AddProductFormProps) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="price">Price *</Label>
+              <Label htmlFor="price">मूल्य NPR (Price) *</Label>
               <Input
                 id="price"
                 type="number"
@@ -130,14 +130,16 @@ export function AddProductForm({ open, onClose, onAdd }: AddProductFormProps) {
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Grocery">Grocery</SelectItem>
-                <SelectItem value="Dairy">Dairy</SelectItem>
-                <SelectItem value="Bakery">Bakery</SelectItem>
-                <SelectItem value="Produce">Produce</SelectItem>
-                <SelectItem value="Beverages">Beverages</SelectItem>
-                <SelectItem value="Snacks">Snacks</SelectItem>
-                <SelectItem value="Personal Care">Personal Care</SelectItem>
-                <SelectItem value="Household">Household</SelectItem>
+                <SelectItem value="खाद्यान्न (Grains)">खाद्यान्न (Grains)</SelectItem>
+                <SelectItem value="तेल/घ्यू (Oil/Ghee)">तेल/घ्यू (Oil/Ghee)</SelectItem>
+                <SelectItem value="डेयरी (Dairy)">डेयरी (Dairy)</SelectItem>
+                <SelectItem value="दाल (Pulses)">दाल (Pulses)</SelectItem>
+                <SelectItem value="तरकारी (Vegetables)">तरकारी (Vegetables)</SelectItem>
+                <SelectItem value="मसला (Spices)">मसला (Spices)</SelectItem>
+                <SelectItem value="पेय (Beverages)">पेय (Beverages)</SelectItem>
+                <SelectItem value="तयारी खाना (Instant Food)">तयारी खाना (Instant Food)</SelectItem>
+                <SelectItem value="मासु (Meat)">मासु (Meat)</SelectItem>
+                <SelectItem value="घरायसी (Household)">घरायसी (Household)</SelectItem>
               </SelectContent>
             </Select>
           </div>

@@ -10,11 +10,11 @@ interface BottomNavProps {
 
 export function BottomNav({ activeView, onViewChange, onAddProduct }: BottomNavProps) {
   const navItems = [
-    { id: 'dashboard', icon: FiHome, label: 'Home' },
-    { id: 'inventory', icon: FiPackage, label: 'Inventory' },
-    { id: 'add', icon: FiPlus, label: 'Add', special: true },
-    { id: 'analytics', icon: FiBarChart2, label: 'Analytics' },
-    { id: 'settings', icon: FiSettings, label: 'Settings' }
+    { id: 'dashboard', icon: FiHome, label: 'गृह' },
+    { id: 'inventory', icon: FiPackage, label: 'सामान' },
+    { id: 'add', icon: FiPlus, label: 'थप्नुहोस्', special: true },
+    { id: 'analytics', icon: FiBarChart2, label: 'विश्लेषण' },
+    { id: 'settings', icon: FiSettings, label: 'सेटिङ' }
   ];
 
   return (
