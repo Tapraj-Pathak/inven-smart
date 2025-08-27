@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
-import { FiHome, FiPackage, FiBarChart2, FiPlus, FiSettings } from 'react-icons/fi';
+import { FiHome, FiPackage, FiBarChart2, FiPlus, FiSettings, FiUser, FiLogOut } from 'react-icons/fi';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface BottomNavProps {
   activeView: string;
@@ -9,12 +11,18 @@ interface BottomNavProps {
 }
 
 export function BottomNav({ activeView, onViewChange, onAddProduct }: BottomNavProps) {
+  const { isAuthenticated, logout } = useAuth();
+  
   const navItems = [
     { id: 'dashboard', icon: FiHome, label: 'गृह' },
     { id: 'inventory', icon: FiPackage, label: 'सामान' },
     { id: 'add', icon: FiPlus, label: 'थप्नुहोस्', special: true },
     { id: 'analytics', icon: FiBarChart2, label: 'विश्लेषण' },
-    { id: 'settings', icon: FiSettings, label: 'सेटिङ' }
+    { id: 'settings', icon: FiSettings, label: 'सेटिङ' },
+    ...(isAuthenticated 
+      ? [{ id: 'logout', icon: FiLogOut, label: 'लगआउट', action: logout }]
+      : [{ id: 'auth', icon: FiUser, label: 'लगइन', link: '/login' }]
+    )
   ];
 
   return (
@@ -38,6 +46,36 @@ export function BottomNav({ activeView, onViewChange, onAddProduct }: BottomNavP
                 className="h-12 w-12 rounded-full shadow-glow"
               >
                 <Icon className="h-6 w-6" />
+              </Button>
+            );
+          }
+          
+          if (item.link) {
+            return (
+              <Link key={item.id} to={item.link}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="flex flex-col gap-1 h-auto py-2 text-muted-foreground hover:text-primary"
+                >
+                  <Icon className="h-5 w-5" />
+                  <span className="text-xs">{item.label}</span>
+                </Button>
+              </Link>
+            );
+          }
+          
+          if (item.action) {
+            return (
+              <Button
+                key={item.id}
+                onClick={item.action}
+                variant="ghost"
+                size="icon"
+                className="flex flex-col gap-1 h-auto py-2 text-red-600 hover:text-red-700"
+              >
+                <Icon className="h-5 w-5" />
+                <span className="text-xs">{item.label}</span>
               </Button>
             );
           }

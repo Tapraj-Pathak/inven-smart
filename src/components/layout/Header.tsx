@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import { FiBell, FiMenu, FiSearch } from 'react-icons/fi';
+import { FiBell, FiMenu, FiSearch, FiUser, FiLogIn, FiLogOut } from 'react-icons/fi';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Link } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -10,6 +12,8 @@ interface HeaderProps {
 }
 
 export function Header({ onMenuClick, searchValue, onSearchChange }: HeaderProps) {
+  const { user, isAuthenticated, logout } = useAuth();
+  
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
@@ -46,10 +50,46 @@ export function Header({ onMenuClick, searchValue, onSearchChange }: HeaderProps
             </div>
           </div>
           
-          <Button variant="ghost" size="icon" className="relative">
-            <FiBell className="h-5 w-5" />
-            <span className="absolute top-1 right-1 h-2 w-2 bg-destructive rounded-full animate-pulse" />
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" className="relative">
+              <FiBell className="h-5 w-5" />
+              <span className="absolute top-1 right-1 h-2 w-2 bg-destructive rounded-full animate-pulse" />
+            </Button>
+            
+            <div className="hidden md:flex items-center gap-2">
+              {isAuthenticated ? (
+                <>
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <span>Welcome, {user?.firstName}!</span>
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="gap-2 text-red-600 hover:text-red-700 hover:bg-red-50"
+                    onClick={logout}
+                  >
+                    <FiLogOut className="h-4 w-4" />
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <Button variant="ghost" size="sm" className="gap-2">
+                      <FiLogIn className="h-4 w-4" />
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to="/register">
+                    <Button size="sm" className="gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                      <FiUser className="h-4 w-4" />
+                      Sign Up
+                    </Button>
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </motion.header>
